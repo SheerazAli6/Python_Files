@@ -1,0 +1,30 @@
+import simplegui
+import math
+
+width = 500
+height = 400
+bol_position = [width / 2, height / 2]
+bol_radious = 20
+bol_colour = "red"
+
+def distance(p,q):
+    return math.sqrt((p[0] - q[0]) ** 2 + (p[1] - q[1]) ** 2)
+
+def draw(canvas):
+    canvas.draw_circle(bol_position,bol_radious , 2 , "Orange" , bol_colour)
+
+def click(pos):
+    global bol_position,bol_colour
+    if(distance(pos,bol_position) < bol_radious):
+        bol_colour = "Green"
+    else:
+        bol_position = list(pos)
+        bol_colour = "red"
+
+frame = simplegui.create_frame("This Is Mouse Click Programme" , width , height)
+frame.set_canvas_background("white")
+frame.set_draw_handler(draw)
+frame.set_mouseclick_handler(click)
+
+
+frame.start()
